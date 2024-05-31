@@ -11,7 +11,7 @@ import { initSocket } from "../helper/socket";
 import { ACTIONS } from "../helper/SocketAction";
 import { useNavigate, useParams } from "react-router-dom";
 
-const EditorContainer = ({}) => {
+const EditorContainer = () => {
   const navigate = useNavigate();
   const { roomId } = useParams();
 

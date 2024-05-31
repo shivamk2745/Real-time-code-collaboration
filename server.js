@@ -3,8 +3,17 @@ import path from "path";
 import http from "http";
 import { Server } from "socket.io";
 import { ACTIONS } from "./SocketActions.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
+app.use(express.static("dist"));
+app.use((req, resp, next) => {
+  resp.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 const server = http.createServer(app);
 const io = new Server(server);
 
