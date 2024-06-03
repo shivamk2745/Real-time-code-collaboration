@@ -4,9 +4,10 @@ import { io, Socket } from "socket.io-client";
 export const initSocket = async () => {
   const option = {
     forceNew: true,
-    reconnectionAttempts: 10000,
+    path: "/socket",
+    reconnectionAttempts: 10,
     timeout: 10000,
-    transports: ["websocket"],
+    transports: ["websocket", "polling"],
   };
   return io(process.env.REACT_APP_BACKEND_URL, option);
 };
