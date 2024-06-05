@@ -15,14 +15,13 @@ app.use((req, resp, next) => {
   resp.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-
 const server = http.createServer(app);
-const io = new Server(server,{
-  path:'/socket',
-  wssEngine:['ws','wss'],
-  transports:['websocket',"polling"],
-  cors:{
-    origin:'',
+const io = new Server(server, {
+  path: "/socket",
+  wssEngine: ["ws", "wss"],
+  transports: ["websocket", "polling"],
+  cors: {
+    origin: "",
   },
   allowEIO3: true,
 });

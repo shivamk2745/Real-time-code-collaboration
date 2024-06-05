@@ -9,5 +9,5 @@ export const initSocket = async () => {
     timeout: 10000,
     transports: ["websocket", "polling"],
   };
-  return io(process.env.REACT_APP_BACKEND_URL, option);
+  return io("https://real-time-code-collaboration-5ib5.onrender.com", option);
 };
