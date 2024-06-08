@@ -5,8 +5,8 @@ export const initSocket = async () => {
   const option = {
     forceNew: true,
     path: "/socket",
-    reconnectionAttempts: 10000,
-    timeout: 10000,
+    reconnectionAttempts: 100000,
+    timeout: 80000,
     transports: ["websocket", "polling"],
   };
   return io("https://real-time-code-collaboration-5ib5.onrender.com", option);
