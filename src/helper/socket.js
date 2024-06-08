@@ -5,7 +5,7 @@ export const initSocket = async () => {
   const option = {
     forceNew: true,
     path: "/socket",
-    reconnectionAttempts: 1000,
+    reconnectionAttempts: 10000,
     timeout: 10000,
     transports: ["websocket", "polling"],
   };
