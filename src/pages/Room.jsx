@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, Suspense } from "react";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 import PrimaryButton from "../components/Button";
-import ClientAvatar from "../components/ClientAvatar";
+// import ClientAvatar from "../components/ClientAvatar";
 import ConsoleSection from "../components/ConsoleSection";
 import EditorComponent from "../components/EditorComponent";
 import { useGlobalContext } from "../contexts/GlobalContext";
@@ -10,6 +10,9 @@ import { dummyFilesData } from "../helper/data";
 import { initSocket } from "../helper/socket";
 import { ACTIONS } from "../helper/SocketAction";
 import { useNavigate, useParams } from "react-router-dom";
+import LoadingAvatar from "../components/LoadingAvatar";
+
+const ClientAvatar = React.lazy(() => import("../components/ClientAvatar"));
 
 const EditorContainer = () => {
   const navigate = useNavigate();
@@ -221,16 +224,10 @@ const EditorContainer = () => {
             <h3 className="mx-3 text-lg font-semibold mb-2">Connected</h3>
             <div className="px-2 w-full flex flex-wrap">
               {clientList.map((client) => (
-                <ClientAvatar
-                  key={client.socketId}
-                  username={client.username}
-                />
+                <Suspense fallback={<LoadingAvatar />} key={client.socketId}>
+                  <ClientAvatar username={client.username} />
+                </Suspense>
               ))}
-              {/* <ClientAvatar username="patil" />
-              <ClientAvatar username="adad" />
-              <ClientAvatar username="da" />
-              <ClientAvatar username="Naaadaan" />
-              <ClientAvatar username="Naayan" /> */}
             </div>
           </div>
           <div className="mx-3">
